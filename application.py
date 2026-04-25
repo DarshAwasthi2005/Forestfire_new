@@ -9,6 +9,9 @@ app = application
 ridge_model=pickle.load(open('Algorithms/ridge_model.pkl','rb'))
 Standard_model=pickle.load(open('Algorithms/scaler.pkl','rb'))
 
+@app.route("/")
+def home():
+    return render_template('home.html')
 
 
 @app.route('/predict', methods=['GET', 'POST'])
