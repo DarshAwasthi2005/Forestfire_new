@@ -9,9 +9,7 @@ app = application
 ridge_model=pickle.load(open('Algorithms/ridge_model.pkl','rb'))
 Standard_model=pickle.load(open('Algorithms/scaler.pkl','rb'))
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
