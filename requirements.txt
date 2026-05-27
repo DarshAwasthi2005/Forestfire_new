@@ -3,3 +3,4 @@ numpy
 pandas
 scikit-learn
 gunicorn
+shap==0.46.0
