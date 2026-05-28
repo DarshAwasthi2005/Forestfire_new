@@ -8,8 +8,6 @@ application = FastAPI(title="Forest Fire Prediction API")
 ridge_model = pickle.load(open('Algorithms/ridge_model.pkl','rb'))
 Standard_model = pickle.load(open('Algorithms/scaler.pkl','rb'))
 
-# Your existing model load code stays here
-# model = joblib.load("ridge_model.pkl")
 feature_names = [
     'Date', 'Month', 'Year', 'Temperature', 'RH', 'Ws',
     'Rain', 'FFMC', 'DMC', 'ISI', 'Classes', 'Region'
