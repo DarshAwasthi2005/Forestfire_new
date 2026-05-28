@@ -49,3 +49,9 @@ def explain_prediction(data: dict):
         ],
         "all_features": {feat: round(float(val), 3) for feat, val in feature_impact}
     }
+
+if __name__ == "__main__":
+    import uvicorn
+    import os
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
