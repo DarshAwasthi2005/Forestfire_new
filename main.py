@@ -4,7 +4,7 @@ import pickle
 import numpy as np
 import shap
 
-application = FastAPI(title="Forest Fire Prediction API")
+app = FastAPI(title="Forest Fire Prediction API")
 ridge_model = pickle.load(open('Algorithms/ridge_model.pkl','rb'))
 Standard_model = pickle.load(open('Algorithms/scaler.pkl','rb'))
 
@@ -15,11 +15,11 @@ feature_names = [
 
 explainer = shap.LinearExplainer(ridge_model, masker=np.zeros((1, len(feature_names))))
 
-@application.get("/", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse)
 def home():
     return "Send POST to /predict"
 
-@application.post("/predict")
+@app.post("/predict")
 def predict(
     Date: float = Form(...), Month: float = Form(...), Year: float = Form(...),
     Temperature: float = Form(...), RH: float = Form(...), Ws: float = Form(...),
@@ -31,7 +31,7 @@ def predict(
     return {"prediction": float(prediction[0])}
 
 
-@application.post("/explain")
+@app.post("/explain")
 def explain_prediction(data: dict):
     input_array = np.array([[data[feat] for feat in feature_names]])
     prediction = ridge_model.predict(input_array)[0]
